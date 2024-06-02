@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Background Remover{% endblock %}</title>
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-gray-800 p-4 text-white">
+        <nav class="container mx-auto">
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'home' %}" class="hover:underline">Home</a></li>
+                <li><a href="{% url 'about' %}" class="hover:underline">About</a></li>
+                <li><a href="{% url 'contact' %}" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 p-4 text-white text-center">
+        &copy; 2024 Background Remover
+    </footer>
+</body>
+</html>

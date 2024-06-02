@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home - Background Remover{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Remove Background from Images</h1>
+<form id="upload-form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*" class="mb-4">
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2">Upload</button>
+</form>
+<div id="result" class="mt-4"></div>
+
+<h1 class="text-2xl font-bold mb-4">Remove Background from Images</h1>
+<form id="upload-form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*" class="mb-4" id="image-input">
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2">Upload</button>
+</form>
+<div id="result" class="mt-4"></div>
+
+<script>
+    document.getElementById('upload-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        let formData = new FormData(this);
+        let response = await fetch('', {
+            method: 'POST',
+            body: formData
+        });
+        let result = await response.json();
+        let img = document.createElement('img');
+        img.src = 'data:image/png;base64,' + result.image;
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('result').appendChild(img);
+    });
+</script>
+
+{% endblock %}
